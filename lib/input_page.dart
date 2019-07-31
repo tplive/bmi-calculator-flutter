@@ -6,6 +6,7 @@ import 'reusable_card.dart';
 const bottomContainerHeight = 75.0;
 const bottomContainerColor = Color(0xFFEB1555);
 const activeCardColour = Color(0xFF1D1E33);
+const inactiveCardColour = Color(0xFF111328);
 
 class InputPage extends StatefulWidget {
   @override
@@ -13,6 +14,10 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+
+  var maleCardColour = inactiveCardColour;
+  var femaleCardColour = inactiveCardColour;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,20 +30,34 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: ReusableCard(
-                    color: activeCardColour,
-                    cardChild: IconContent(
-                      icon: FontAwesomeIcons.mars,
-                      label: 'MALE',
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        changeColour(1);
+                      });
+                    },
+                    child: ReusableCard(
+                      color: maleCardColour,
+                      cardChild: IconContent(
+                        icon: FontAwesomeIcons.mars,
+                        label: 'MALE',
+                      ),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: ReusableCard(
-                    color: activeCardColour,
-                    cardChild: IconContent(
-                      icon: FontAwesomeIcons.venus,
-                      label: 'FEMALE',
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        changeColour(2);
+                      });
+                    },
+                    child: ReusableCard(
+                      color: femaleCardColour,
+                      cardChild: IconContent(
+                        icon: FontAwesomeIcons.venus,
+                        label: 'FEMALE',
+                      ),
                     ),
                   ),
                 ),
@@ -70,8 +89,20 @@ class _InputPageState extends State<InputPage> {
       ),
     );
   }
+
+  void changeColour(int gender) {
+    if (gender == 1) {
+      if (maleCardColour == inactiveCardColour) {
+        maleCardColour = activeCardColour;
+      } else {
+        maleCardColour = inactiveCardColour;
+      }
+    } else if (gender == 2) {
+      if (femaleCardColour == inactiveCardColour) {
+        femaleCardColour = activeCardColour;
+      } else {
+        femaleCardColour = inactiveCardColour;
+      }
+    }
+  }
 }
-
-
-
-
