@@ -36,6 +36,11 @@ const kBodyTextStyle = TextStyle(
 
 );
 
+const kLargeButtonTextStyle = TextStyle(
+  fontSize: 25.0,
+  fontWeight: FontWeight.w900,
+);
+
 const kBottomContainerHeight = 75.0;
 const kBottomContainerColor = Color(0xFFEB1555);
 const kActiveCardColour = Color(0xFF1D1E33);
